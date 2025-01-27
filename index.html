@@ -3,57 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Asset</title>
+    <title>Gerenciamento de Ativos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-        input[type="text"] {
-            width: calc(100% - 100px);
-            padding: 10px;
-            font-size: 16px;
-        }
-        button {
-            padding: 10px;
-            font-size: 16px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
-        table, th, td {
-            border: 1px solid #ccc;
-        }
         th, td {
-            padding: 10px;
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
         }
+        th {
+            background-color: #f4f4f4;
+        }
+        input, button {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+        button.delete {
+            background-color: #f44336;
+        }
+        .search {
+            width: 50%;
+        }
+        .rights {
+            font-size: 0.9rem;
+        }
+        .cnpj {
+            font-weight: 700;
+        }
     </style>
-    <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h1>ATIVOS REFRISIL</h1>
-        <p>Pesquise pelo ativo (e.g., REF-CEL-001):</p>
-        <div>
-            <input type="text" id="searchRef" placeholder="Enter Asset Reference">
-            <button onclick="searchAsset()">Pesquisar</button>
-        </div>
-        <table id="resultTable" style="display:none;">
-            <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody id="resultBody"></tbody>
-        </table>
-    </div>
+    <p class="rights">Developed by Weverton Oliveira - Ver. 1.0</p>
+    <p class="cnpj">Refrisil Distribuição e Importação de Peças de Refrigeração LTDA</p>
+    <h1>Gerenciamento de Ativos - Refrisil</h1>
+
+    <input type="text" class="search" id="searchInput" placeholder="Pesquisar por ID, Tipo ou Usuário Responsável...">
+
+    <h2 id="formTitle">Adicionar Novo Ativo</h2>
+    <form id="assetForm">
+        <input type="hidden" id="editIndex" value="">
+        <input type="text" id="assetID" placeholder="ID" required>
+        <input type="text" id="assetType" placeholder="Tipo" required>
+        <input type="text" id="assetModel" placeholder="Modelo/Marca" required>
+        <input type="text" id="assetSerial" placeholder="Número de Série">
+        <input type="text" id="assetUser" placeholder="Usuário Responsável">
+        <input type="text" id="assetLocation" placeholder="Localização">
+        <input type="text" id="assetStatus" placeholder="Status">
+        <input type="text" id="assetCondition" placeholder="Estado do Equipamento">
+        <button type="submit">Salvar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Tipo</th>
+                <th>Modelo/Marca</th>
+                <th>Número de Série</th>
+                <th>Usuário Responsável</th>
+                <th>Localização</th>
+                <th>Status</th>
+                <th>Estado</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="assetsTableBody">
+        </tbody>
+    </table>
 </body>
+    <script src="./script.js"></script>
 </html>
